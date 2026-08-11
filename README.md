@@ -5,7 +5,7 @@ question — a calculator, Wikipedia search, the current date/time, or a
 small local knowledge base — instead of only generating text from its
 training data. Runs entirely on-device via Microsoft Foundry Local, the
 same runtime used in the companion project
-[local-rag-assistant](../local-rag-assistant).
+[local-rag-assistant](https://github.com/eniscan17/local-rag-assistant).
 
 **Why this project exists:** local-rag-assistant always does one fixed
 step (retrieve → answer). This project generalizes that idea: the model
