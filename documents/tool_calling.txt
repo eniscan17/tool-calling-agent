@@ -1,0 +1,7 @@
+Tool Calling
+
+Tool calling (also called function calling) lets a language model use external functions instead of answering purely from its training data. The developer describes each available tool as a JSON schema — its name, a description, and the parameters it accepts. When the model decides a tool would help answer the user's question, it doesn't run the function itself; instead it returns a structured "tool call" request naming the function and the arguments to use.
+
+The application is responsible for actually executing the requested function, then sending the result back to the model as a new message with the role "tool". The model reads that result and either calls another tool or produces a final natural-language answer. This loop can repeat multiple times for questions that need several tools in sequence.
+
+Tool calling is what turns a plain chatbot into an agent: instead of only generating text, the model can look things up, do calculations, or take actions, and ground its final answer in real, verifiable results rather than guessing.

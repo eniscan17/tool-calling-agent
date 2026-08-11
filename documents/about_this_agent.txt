@@ -1,0 +1,7 @@
+About This Agent
+
+This project is a tool-calling AI agent that runs entirely on-device using Microsoft Foundry Local, the same runtime used in the companion project local-rag-assistant. Instead of only retrieving from documents, this agent can take multiple kinds of action to answer a question.
+
+It has four tools available: a calculator for arithmetic, a Wikipedia search for general knowledge questions, a current date and time lookup, and a search over this small local knowledge base. Given a question, the model decides on its own which tool (if any) is needed, the application executes that tool, and the result is fed back to the model so it can either call another tool or give a final, grounded answer.
+
+This design mirrors the local-rag-assistant project's retrieval-augmented approach, but generalizes it: instead of a single fixed retrieval step, the model plans which action to take at each step, which is the core idea behind AI agents.

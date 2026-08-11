@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environment
+.venv/
+
+# Generated data
+data/*.sqlite3
+
+# macOS
+.DS_Store
+
+# Foundry Local local config/cache (machine-specific)
+.foundry/
