@@ -11,6 +11,7 @@ local-rag-assistant's test log.
 | 4 | How does tool calling work in this project? | `search_knowledge_base` | ✅ Pass — after adding silent auto-context injection, correctly grounded in tool_calling.txt |
 | 5 | What's the weather in Paris? | none — no weather tool exists; agent should say it can't answer, not guess | ✅ Pass — declined and suggested a real weather source instead of guessing |
 | 6 | (chain) What is 12 * 12, and also who was Alan Turing? | two tools in one turn: `calculate` then `search_wikipedia` | ⚠️ Partial — answer was correct and no longer loops (repeat-guard works), but neither tool actually fired: math was embedded in a larger sentence so the deterministic router didn't match it (by design — see below), and the KB auto-check fired a weak, barely-above-threshold false-positive match instead of nothing |
+| 7 | Who is Eda? (unrelated to this project) | none — should get a plain answer or an honest "I don't know who that is", no KB context | ❌ Fail (before fix) — matched `tool_calling.txt` (0.386) and `about_this_agent.txt` (0.355) against the old 0.35 threshold and got fed into the model as if relevant. **Fixed:** raised `KB_MIN_RELEVANCE_SCORE` to 0.5 in `config.py` (see comment there). ⚠️ Not yet re-verified live — re-run this question and #4 after pulling this change, to confirm the false positive is gone *and* #4 still correctly matches `tool_calling.txt`. |
 
 ## Findings & decisions
 

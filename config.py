@@ -29,7 +29,16 @@ DATA_DIR = os.path.join(BASE_DIR, "data")
 KB_DB_PATH = os.path.join(DATA_DIR, "agent_kb.sqlite3")
 
 KB_TOP_K = 2
-KB_MIN_RELEVANCE_SCORE = 0.35
+# Raised from 0.35 after a real false-positive: an unrelated question ("who is
+# Eda") scored 0.386 and 0.355 against this small 2-document knowledge base —
+# both above the old threshold — and got folded into the model's context as
+# if it were relevant. With only two documents, coincidental word overlap
+# ("Turing", "computing"-adjacent terms, etc.) is enough to clear a low bar.
+# 0.5 was chosen to sit above that observed false-positive band; re-verify
+# against a genuinely on-topic question (e.g. "How does tool calling work in
+# this project?") after any change here, since raising the threshold too far
+# risks the opposite failure — a real match getting silently dropped.
+KB_MIN_RELEVANCE_SCORE = 0.5
 
 SYSTEM_PROMPT = (
     "You are a helpful assistant with access to tools. Use them when needed to "
