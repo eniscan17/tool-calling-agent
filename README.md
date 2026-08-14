@@ -173,3 +173,12 @@ small-model failure modes in code rather than hoping the model avoids them.
 Adding a new tool takes two steps: add its JSON schema to `TOOLS` in
 `tools.py`, write the Python function, and add it to `TOOL_FUNCTIONS`.
 Nothing in `agent.py` needs to change.
+
+## Related project
+
+[**data-insights-agent**](https://github.com/eniscan17/data-insights-agent) —
+another companion project on the same Foundry Local setup, narrowing this
+project's general-purpose tool-calling loop to one focused domain: upload a
+CSV and ask questions in plain language, and the agent calls real pandas/
+matplotlib tools (query, statistical summary, aggregation, charting)
+instead of guessing at numbers.
